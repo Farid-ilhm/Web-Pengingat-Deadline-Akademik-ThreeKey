@@ -1,0 +1,340 @@
+/* ===============================
+   RESET
+================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+body {
+  background: #faf6dc;
+  color: #222;
+}
+
+/* ===============================
+   NAVBAR (STICKY)
+================================ */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  height: 70px;
+  padding: 0 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: #ffffff;
+  border-bottom: 1px solid #eee;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+.brand {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0b2a45;
+}
+
+.nav-right {
+  display: flex;
+  gap: 10px;
+}
+
+/* ===============================
+   BUTTONS
+================================ */
+.btn-primary {
+  background: #0b2a45;
+  color: #ffffff;
+  padding: 8px 18px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.25s ease;
+}
+
+.btn-primary:hover {
+  background: #123a5c;
+}
+
+.btn-outline {
+  border: 1.5px solid #0b2a45;
+  color: #0b2a45;
+  padding: 8px 18px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.25s ease;
+}
+
+.btn-outline:hover {
+  background: #0b2a45;
+  color: #ffffff;
+}
+
+.btn-primary.large {
+  padding: 14px 34px;
+  font-size: 16px;
+}
+
+/* ===============================
+   HERO
+================================ */
+.hero {
+  text-align: center;
+  padding: 90px 20px 60px;
+}
+
+.hero h1 {
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.hero h1 span {
+  color: rgb(30, 30, 183);
+}
+
+.hero p {
+  font-size: 18px;
+  color: #555;
+  max-width: 680px;
+  margin: 0 auto 28px;
+}
+
+/* ===============================
+   COLLAGE (PINTEREST STYLE)
+================================ */
+.inspiration {
+  padding: 40px 20px 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.collage {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  height: 520px;
+}
+
+.collage-item {
+  position: absolute;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+}
+
+.collage-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.collage-item.big {
+  width: 320px;
+  height: 420px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+.collage-item.medium {
+  width: 260px;
+  height: 340px;
+}
+
+.collage-item.small {
+  width: 220px;
+  height: 260px;
+}
+
+.collage-item.top {
+  top: 0;
+  left: 120px;
+}
+
+.collage-item.right {
+  top: 80px;
+  right: 0;
+}
+
+.collage-item.bottom {
+  bottom: 0;
+  left: 160px;
+}
+
+.collage-item.left {
+  top: 140px;
+  left: 0;
+}
+
+.overlay-text {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  background: rgba(255,255,255,0.85);
+  padding: 10px 16px;
+  border-radius: 16px;
+  font-weight: 700;
+  color: #0b2a45;
+  font-size: 14px;
+}
+
+/* ===============================
+   FEATURE (ZIG-ZAG PINTEREST)
+================================ */
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 70px;
+  padding: 120px 10%;
+}
+
+.feature.reverse {
+  flex-direction: row-reverse;
+}
+
+.feature-image {
+  flex: 1;
+}
+
+.feature-image img {
+  width: 100%;
+  border-radius: 28px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+}
+
+/* ===============================
+   GRID 4 FOTO (PINTEREST STYLE)
+================================ */
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+/* variasi tinggi ala pinterest */
+.grid-4 img:nth-child(1) {
+  grid-row: span 2;
+}
+
+.grid-4 img:nth-child(3) {
+  grid-row: span 2;
+}
+
+.feature-text {
+  flex: 1;
+}
+
+.feature-text h2 {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.feature-text h3 {
+  margin-top: 22px;
+  font-size: 22px;
+}
+
+.feature-text p {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 14px;
+}
+
+.feature-text ul {
+  padding-left: 20px;
+}
+
+.feature-text li {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* ===============================
+   FOOTER
+================================ */
+.footer {
+  text-align: center;
+  padding: 30px 20px;
+  border-top: 1px solid #eee;
+  background: #ffffff;
+  font-size: 14px;
+  color: #666;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 900px) {
+  .feature,
+  .feature.reverse {
+    flex-direction: column;
+    padding: 80px 6%;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 20px;
+  }
+
+  .collage {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .collage-item {
+    position: relative;
+    width: 100% !important;
+    height: 260px !important;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    transform: none;
+  }
+}
+
+/* ===============================
+   SECTION BACKGROUND VARIATION
+================================ */
+.section-soft {
+  background: #f7f4f1;
+}
+
+.section-green {
+  background: #d6ac4b;
+}
+
+.section-white {
+  background: navajowhite;
+}
+.section-yellow {
+  background: #faf6dc;
+}

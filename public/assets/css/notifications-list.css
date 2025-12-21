@@ -1,0 +1,113 @@
+.notif-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  /* Center the wrapper */
+}
+
+/* GROUP */
+.notif-group {
+  margin-bottom: 28px;
+}
+
+.notif-group-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #6b7280;
+  margin-bottom: 10px;
+  padding-left: 6px;
+}
+
+/* ROW */
+.notif-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #f8f6ec;
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin-bottom: 12px;
+  transition: 0.2s ease;
+}
+
+.notif-row:hover {
+  background: #f3f1e3;
+}
+
+.notif-row.unread {
+  border-left: 5px solid #f4b400;
+}
+
+.notif-row.read {
+  opacity: 0.65;
+}
+
+/* ICON */
+.notif-icon {
+  width: 44px;
+  height: 44px;
+  background: #0f2a44;
+  color: #fff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-right: 16px;
+}
+
+/* BODY */
+.notif-body {
+  flex: 1;
+  pointer-events: auto;
+}
+
+.notif-title {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.notif-desc {
+  font-size: 13px;
+  color: #4b5563;
+}
+
+/* META */
+.notif-meta {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ACTIONS */
+.notif-actions {
+  position: relative;
+  z-index: 10;
+  /* 🔥 PENTING */
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.notif-actions button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 4px;
+  pointer-events: auto;
+  /* 🔥 PENTING */
+}
+
+.btn-read {
+  color: #16a34a;
+}
+
+.btn-delete {
+  color: #dc2626;
+}
+
+.notif-actions button:hover {
+  transform: scale(1.2);
+}

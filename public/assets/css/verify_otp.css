@@ -1,0 +1,101 @@
+:root {
+  --navy: #0b2a45;
+  --gold: #d6a73c;
+  --light: #faf6dc;
+  --white: #ffffff;
+  --danger: #dc2626;
+  --success: #16a34a;
+}
+
+/* ================= RESET ================= */
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ================= CARD ================= */
+.verify-card {
+  background: #fffdf2;
+  width: 100%;
+  max-width: 420px;
+  padding: 28px;
+  border-radius: 18px;
+  border: 2px solid var(--gold);
+  box-shadow: 0 12px 30px rgba(0,0,0,.12);
+  text-align: center;
+}
+
+.verify-card h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  color: var(--navy);
+}
+
+/* ================= FORM ================= */
+.verify-form input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1.5px solid #ccc;
+  font-size: 15px;
+  margin-bottom: 14px;
+  text-align: center;
+  letter-spacing: 3px;
+}
+
+.verify-form input:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+/* ================= BUTTON ================= */
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  background: var(--gold);
+  color: #000;
+  font-weight: 700;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: #c89a2f;
+}
+
+.btn-link {
+  margin-top: 12px;
+  background: none;
+  border: none;
+  color: var(--gold);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* ================= ALERT ================= */
+.alert {
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+
+.alert-error {
+  background: #fee2e2;
+  color: var(--danger);
+}
+
+.alert-success {
+  background: #dcfce7;
+  color: var(--success);
+}

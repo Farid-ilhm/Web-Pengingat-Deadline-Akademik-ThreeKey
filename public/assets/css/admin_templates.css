@@ -1,0 +1,185 @@
+:root {
+  --navy: #0b2a45;
+  --gold: #d6a73c;
+  --light: #faf6dc;
+  --card: #fffbe6;
+  --white: #ffffff;
+  --border: #e6e0c9;
+  --danger: #b30000;
+}
+
+/* ================= PAGE TITLE ================= */
+.admin-content h2 {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 20px;
+}
+
+/* ================= ALERT ================= */
+.alert {
+  background: #fff3cd;
+  border-left: 5px solid var(--gold);
+  padding: 12px 16px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* ================= CARD ================= */
+.card {
+  background: var(--card);
+  border: 2px solid var(--gold);
+  border-radius: 18px;
+  padding: 26px;
+  margin-bottom: 32px;
+}
+
+/* ================= FORM ================= */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+label {
+  font-weight: 700;
+  color: var(--navy);
+  font-size: 14px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1.5px solid var(--border);
+  font-size: 14px;
+  background: var(--white);
+  box-sizing: border-box;
+}
+
+textarea {
+  min-height: 110px;
+  resize: none;
+}
+
+/* ================= BUTTON ================= */
+button {
+  align-self: flex-start;
+  background: var(--gold);
+  color: #000;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #c89a2f;
+}
+
+/* ================= SECTION TITLE ================= */
+.card h3 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 18px;
+}
+
+/* ================= TEMPLATE LIST ================= */
+.template-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.template-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+
+  padding: 16px 18px;
+  margin-bottom: 14px;
+
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+}
+
+/* INFO */
+.template-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.template-info strong {
+  font-size: 15px;
+  color: var(--navy);
+}
+
+.template-info small {
+  font-size: 13px;
+  color: #666;
+}
+
+/* ================= ACTIONS ================= */
+.template-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.template-actions a {
+  padding: 6px 16px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 13px;
+  text-decoration: none;
+  border: 1.5px solid;
+  display: inline-block;
+}
+
+/* EDIT */
+.template-actions .edit {
+  color: var(--navy);
+  border-color: var(--navy);
+}
+
+.template-actions .edit:hover {
+  background: var(--navy);
+  color: #fff;
+}
+
+/* DELETE */
+.template-actions .delete {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+.template-actions .delete:hover {
+  background: var(--danger);
+  color: #fff;
+}
+
+/* ================= EMPTY ================= */
+.empty-state {
+  text-align: center;
+  padding: 30px;
+  color: #777;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .template-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .template-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}

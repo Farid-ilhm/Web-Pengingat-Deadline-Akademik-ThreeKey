@@ -1,0 +1,182 @@
+/* ===============================
+   CONTAINER
+================================ */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===============================
+   CARD
+================================ */
+.login-container.single-column {
+  width: 420px;
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+}
+
+/* ===============================
+   NAVY TOP
+================================ */
+.navy-section {
+  background: #0b2a45;
+  color: #ffffff;
+  text-align: center;
+  padding: 28px 20px;
+}
+
+.navy-section h2 {
+  font-size: 20px;
+  margin-bottom: 14px;
+}
+
+.logo-box {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.15);
+  border-radius: 30%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.logo-box img {
+  width: 55px;
+  border-radius: 50%;
+}
+
+/* ===============================
+   WHITE FORM
+================================ */
+.white-section {
+  padding: 32px 26px;
+  text-align: center;
+}
+
+.white-section h2 {
+  font-size: 22px;
+  color: #0b2a45;
+  margin-bottom: 6px;
+}
+
+.white-section span {
+  display: block;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* ===============================
+   FORM
+================================ */
+.form-box {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-box input {
+  height: 46px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: #f7f7f7;
+}
+
+.form-box input:focus {
+  outline: none;
+  border-color: #0b2a45;
+  background: #ffffff;
+}
+
+/* ===============================
+   BUTTON
+================================ */
+.btn-login {
+  height: 46px;
+  border-radius: 10px;
+  border: none;
+  background: #0b2a45;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-login:hover {
+  background: #123a5c;
+}
+
+/* ===============================
+   MESSAGE
+================================ */
+.error-msg {
+  background: #ffe5e5;
+  color: #b30000;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+/* ===============================
+   FOOTER LINK
+================================ */
+.register {
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.register a {
+  color: #6a00ff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.btn-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  max-width: 380px;
+  height: 48px;
+
+  margin: 16px auto 0;
+
+  background: #0b2a45;
+  color: #ffffff;
+
+  border: 2px solid #0b2a45;   /* 🔑 BORDER UTAMA */
+  border-radius: 10px;
+
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-link:hover {
+  background: #ffffff;
+  color: #0b2a45;
+  box-shadow: 0 6px 14px rgba(11, 42, 69, 0.25);
+  transform: translateY(-1px);
+}
+
+.btn-link:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(11, 42, 69, 0.2);
+}
+
+.btn-link:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(11, 42, 69, 0.25);
+}
+

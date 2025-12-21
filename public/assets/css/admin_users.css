@@ -1,0 +1,89 @@
+:root {
+  --navy: #0b2a45;
+  --gold: #d6a73c;
+  --light: #faf6dc;
+  --card: #fffbe6;
+  --white: #ffffff;
+  --danger: #b30000;
+  --border: #e6e0c9;
+}
+
+
+/* ================= PAGE TITLE ================= */
+.admin-content h2 {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 18px;
+}
+
+/* ================= CARD ================= */
+.card {
+  background: var(--card);
+  border: 2px solid var(--gold);
+  border-radius: 18px;
+  padding: 22px;
+
+}
+
+/* ================= USER ITEM ================= */
+.user-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+
+  padding: 16px 18px;
+  background: var(--white);
+  border-radius: 14px;
+  border: 1.5px solid var(--border);
+  margin-bottom: 14px;
+}
+
+/* INFO */
+.user-item strong {
+  font-size: 15px;
+  color: var(--navy);
+}
+
+.user-item small {
+  font-size: 13px;
+  color: #666;
+}
+
+/* ================= DELETE BUTTON ================= */
+.btn-delete {
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: 1.5px solid var(--danger);
+  color: var(--danger);
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 13px;
+  transition: 0.2s ease;
+}
+
+.btn-delete:hover {
+  background: var(--danger);
+  color: #fff;
+}
+
+/* ================= EMPTY STATE ================= */
+.empty-state {
+  text-align: center;
+  padding: 30px;
+  color: #777;
+  font-size: 14px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 700px) {
+  .user-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn-delete {
+    align-self: flex-end;
+  }
+}

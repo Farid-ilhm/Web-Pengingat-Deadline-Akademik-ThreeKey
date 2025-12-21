@@ -1,0 +1,59 @@
+/* ================= GANTT PAGE ONLY ================= */
+
+.gantt-page {
+  overflow-x: hidden;
+}
+
+/* CARD */
+.gantt-card {
+  background: #fffbe6;
+  border: 2px solid var(--gold);
+  border-radius: 20px;
+  padding: 24px;
+}
+
+/* TITLE */
+.gantt-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--navy);
+}
+
+/* LEGEND */
+.gantt-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.gantt-legend > div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* WARNA LEGEND */
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.legend-color.tugas    { background: #f1c40f; }
+.legend-color.ujian    { background: #e74c3c; }
+.legend-color.project  { background: #3498db; }
+.legend-color.deadline { background: #e67e22; }
+.legend-color.kuis     { background: #9b59b6; }
+.legend-color.lainnya  { background: #7f8c8d; }
+
+/* CANVAS WRAPPER (ANTI MELEBAR KE BAWAH) */
+.gantt-canvas-wrap {
+  position: relative;
+  height: 320px;      /* 🔥 INI KUNCI UTAMA */
+  width: 100%;
+}

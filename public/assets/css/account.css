@@ -1,0 +1,98 @@
+/* ================= ACCOUNT ================= */
+
+.account-card {
+  background: #fffbe6;
+  border: 2px solid var(--gold);
+  border-radius: 18px;
+  padding: 24px;
+  margin-bottom: 28px;
+}
+
+/* HEADER */
+.account-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* PHOTO */
+.profile-photo {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--gold);
+}
+
+/* INFO */
+.account-info {
+  flex: 1;
+}
+
+.account-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.account-email {
+  margin-top: 4px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* EDIT BUTTON */
+.btn-edit-profile {
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--navy);
+  border: 2px solid var(--navy);
+  background: #eef3f8;
+}
+
+.btn-edit-profile:hover {
+  background: #dde8f2;
+}
+
+/* ================= ACTIONS ================= */
+
+.account-actions {
+  display: flex;
+  gap: 14px;
+}
+
+/* SECONDARY */
+.btn-secondary {
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--navy);
+  border: 2px solid var(--navy);
+  background: #eef3f8;
+}
+
+/* DANGER */
+.btn-danger {
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  color: #b30000;
+  border: 2px solid #b30000;
+  background: #fdecec;
+}
+
+/* RESPONSIVE */
+@media (max-width: 800px) {
+  .account-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .account-actions {
+    flex-direction: column;
+  }
+}

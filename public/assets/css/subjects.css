@@ -1,0 +1,202 @@
+:root {
+  --navy: #0b2a45;
+  --gold: #d6a73c;
+  --light: #faf6dc;
+  --card: #fffbe6;
+  --white: #ffffff;
+  --border: #e6e0c9;
+}
+
+/* PAGE */
+.page-title {
+  margin: 0 0 16px;
+  color: var(--navy);
+}
+
+/* CARD */
+.card {
+  background: var(--card);
+  border: 2px solid var(--gold);
+  border-radius: 18px;
+  padding: 22px;
+  margin-bottom: 26px;
+}
+
+/* CARD HEADER */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+/* ADD BUTTON */
+.btn-add-mapel {
+  background: var(--gold);
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-weight: 700;
+  text-decoration: none;
+  color: #000;
+}
+
+.btn-add-mapel:hover {
+  background: #c89a2f;
+}
+
+/* FORM */
+.subject-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1.8px solid #ddd;
+}
+
+textarea {
+  resize: none;
+  min-height: 90px;
+}
+
+.divider {
+  text-align: center;
+  font-size: 20px;
+  color: #777;
+}
+
+/* BUTTON */
+.btn-primary {
+  background: var(--gold);
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  color: #000;
+}
+
+.btn-primary:hover {
+  background: #c89a2f; /* SAMA PERSIS schedules */
+}
+/* LIST */
+.subject-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.subject-item-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px;
+  margin-bottom: 12px;
+  background: #fffdf3;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+}
+
+/* INFO */
+.subject-title {
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.badge-global {
+  font-size: 12px;
+  margin-left: 6px;
+  color: #777;
+}
+
+.subject-desc {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #555;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+/* ACTIONS */
+.subject-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.subject-actions a {
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+  border: 1.5px solid;
+}
+
+.btn-edit {
+  color: var(--navy);
+  border-color: var(--navy);
+  background: #eef3f8;
+}
+
+.btn-hapus {
+  color: #b30000;
+  border-color: #b30000;
+  background: #fdecec;
+}
+
+/* EMPTY */
+.empty-state {
+  text-align: center;
+  padding: 30px;
+  color: #777;
+}
+
+/* COUNTER */
+.char-counter {
+  font-size: 12px;
+  text-align: right;
+  color: #777;
+}
+
+/* SMOOTH SCROLL */
+html {
+  scroll-behavior: smooth;
+}
+
+.alert {
+  background: #e9f6ee;               /* hijau lembut */
+  border-left: 5px solid #2e7d32;     /* hijau tegas */
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  font-weight: 700;
+  color: #1b5e20;
+}
+
+
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .subject-item-card {
+    flex-direction: column;
+  }
+
+  .subject-actions {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+}

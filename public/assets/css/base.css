@@ -1,0 +1,65 @@
+/* ===============================
+   RESET & BASE
+================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: #f6f0d5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* BACKGROUND GEOMETRIC */
+body::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 45%;
+  height: 60%;
+  background: #d6a536;
+  clip-path: polygon(0 100%, 0 0, 100% 100%);
+  z-index: 0;
+}
+
+body::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 45%;
+  height: 60%;
+  background: #0b2a45;
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  z-index: 0;
+}
+
+/* MESSAGE */
+.error-msg {
+  background: #ffe5e5;
+  color: #b30000;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.success-msg {
+  background: #e6fffa;
+  color: #065f46;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 14px;
+}

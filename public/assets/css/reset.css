@@ -1,0 +1,17 @@
+.reset-form {
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+.btn-save-password {
+  width: 100%;
+  height: 48px;
+  margin-top: 16px;
+  border-radius: 10px;
+  background: #0b2a45;
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
