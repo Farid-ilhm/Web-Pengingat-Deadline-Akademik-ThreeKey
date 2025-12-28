@@ -18,7 +18,6 @@ $client->setRedirectUri($_ENV['GOOGLE_REDIRECT_URI']);
 $client->addScope([
     'email',
     'profile',
-    Calendar::CALENDAR   // <--- INI PENTING UNTUK GOOGLE CALENDAR API
 ]);
 
 /*WAJIB: Minta refresh token, supaya event bisa disimpan dari server*/
