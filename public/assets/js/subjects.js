@@ -1,16 +1,22 @@
-// Alert Auto-dismiss
+// ============================================================
+// ALERT AUTO DISMISS
+// ============================================================
 setTimeout(() => {
     const alert = document.querySelector('.alert');
     if (alert) alert.style.display = 'none';
 }, 6000);
 
-// Sidebar Toggle
+// ============================================================
+// SIDEBAR TOGGLE
+// ============================================================
 document.getElementById("toggleSidebar")
     ?.addEventListener("click", () => {
         document.querySelector(".dashboard").classList.toggle("collapsed");
     });
 
-// Character Counter
+// ============================================================
+// CHARACTER COUNTER
+// ============================================================
 const textarea = document.querySelector('textarea[name="note"]');
 const counter = document.querySelector('.char-counter');
 if (textarea && counter) {

@@ -4,17 +4,22 @@ namespace App\Models;
 use App\Config\Database;
 use PDO;
 
-class Notification {
+class Notification
+{
 
     private $db;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->db = Database::getConnection();
     }
 
-    /* ================== DEADLINE REMINDER ================== */
+    // ============================================================
+    // DEADLINE REMINDER
+    // ============================================================
 
-    public function getSchedulesByDayOffset(int $days): array {
+    public function getSchedulesByDayOffset(int $days): array
+    {
         $stmt = $this->db->prepare("
             SELECT 
                 sch.id AS schedule_id,
@@ -33,7 +38,9 @@ class Notification {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    /* ================== INSERT NOTIFICATION ================== */
+    // ============================================================
+    // INSERT NOTIFICATION
+    // ============================================================
 
     public function create(
         int $userId,
@@ -64,7 +71,8 @@ class Notification {
         $stmt->execute([$userId, $scheduleId, $reminderDay, $title, $message]);
     }
 
-    public function delete(int $id, int $userId): bool {
+    public function delete(int $id, int $userId): bool
+    {
         $stmt = $this->db->prepare("
             DELETE FROM notifications
             WHERE id = ? AND user_id = ?
@@ -73,9 +81,12 @@ class Notification {
     }
 
 
-    /* ================== USER NOTIFICATION ================== */
+    // ============================================================
+    // USER NOTIFICATION
+    // ============================================================
 
-    public function unreadByUser(int $userId): array {
+    public function unreadByUser(int $userId): array
+    {
         $stmt = $this->db->prepare("
             SELECT * FROM notifications
             WHERE user_id = ? AND is_read = 0
@@ -86,7 +97,8 @@ class Notification {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function allByUser(int $userId): array {
+    public function allByUser(int $userId): array
+    {
         $stmt = $this->db->prepare("
             SELECT * FROM notifications
             WHERE user_id = ?
@@ -96,7 +108,8 @@ class Notification {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function markAsRead(int $id, int $userId) {
+    public function markAsRead(int $id, int $userId)
+    {
         $stmt = $this->db->prepare("
             UPDATE notifications SET is_read = 1
             WHERE id = ? AND user_id = ?
@@ -104,12 +117,13 @@ class Notification {
         $stmt->execute([$id, $userId]);
     }
 
-    public function countUnread(int $userId): int {
+    public function countUnread(int $userId): int
+    {
         $stmt = $this->db->prepare("
             SELECT COUNT(*) FROM notifications
             WHERE user_id = ? AND is_read = 0
         ");
         $stmt->execute([$userId]);
-        return (int)$stmt->fetchColumn();
+        return (int) $stmt->fetchColumn();
     }
 }

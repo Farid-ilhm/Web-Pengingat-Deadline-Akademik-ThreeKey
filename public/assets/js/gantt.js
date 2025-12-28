@@ -1,4 +1,6 @@
-// Gantt Chart Logic
+// ============================================================
+// GANTT CHART LOGIC
+// ============================================================
 // Note: ganttDatasets, ganttMinDate, ganttMaxDate must be defined in the PHP view
 
 if (typeof Chart !== 'undefined' && document.getElementById('ganttChart')) {
@@ -47,7 +49,9 @@ if (typeof Chart !== 'undefined' && document.getElementById('ganttChart')) {
     }
 }
 
-// Sidebar Toggle Logic
+// ============================================================
+// SIDEBAR TOGGLE LOGIC
+// ============================================================
 document.addEventListener('DOMContentLoaded', function () {
     const toggleBtn = document.querySelector('.toggle-btn');
     const dashboard = document.querySelector('.dashboard');

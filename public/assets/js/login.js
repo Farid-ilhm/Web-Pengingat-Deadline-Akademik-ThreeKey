@@ -1,9 +1,12 @@
+// ============================================================
+// PASSWORD VISIBILITY TOGGLER
+// ============================================================
 document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(".password-wrapper").forEach(wrapper => {
 
     const input = wrapper.querySelector("input");
-    const icon  = wrapper.querySelector(".eye-icon");
+    const icon = wrapper.querySelector(".eye-icon");
 
     if (!input || !icon) return;
 

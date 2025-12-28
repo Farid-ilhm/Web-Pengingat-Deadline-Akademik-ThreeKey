@@ -1,3 +1,6 @@
+// ============================================================
+// ADMIN LOGOUT MODAL
+// ============================================================
 document.addEventListener('DOMContentLoaded', function () {
     const logoutBtn = document.getElementById('adminLogoutBtn');
     const modal = document.getElementById('adminLogoutModal');

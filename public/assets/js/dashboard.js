@@ -1,4 +1,6 @@
-// Notification Dropdown Logic
+// ============================================================
+// NOTIFICATION DROPDOWN LOGIC
+// ============================================================
 const notifToggle = document.getElementById('notifToggle');
 const notifDropdown = document.getElementById('notifDropdown');
 
@@ -14,7 +16,9 @@ if (notifToggle && notifDropdown) {
     });
 }
 
-// Sidebar Toggle Logic
+// ============================================================
+// SIDEBAR TOGGLE LOGIC
+// ============================================================
 document.addEventListener('DOMContentLoaded', function () {
     const toggleBtn = document.querySelector('.toggle-btn');
     const dashboard = document.querySelector('.dashboard');
@@ -26,7 +30,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-// Chart Initialization
+// ============================================================
+// CHART INITIALIZATION
+// ============================================================
 // Note: chartWeekData, chartWeekLabels, chartSubjectData, chartSubjectLabels must be defined in the PHP view before loading this script.
 
 if (typeof Chart !== 'undefined') {

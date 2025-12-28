@@ -1,4 +1,6 @@
-// Sidebar Toggle Logic for Edit Profile Page
+// ============================================================
+// SIDEBAR TOGGLE LOGIC FOR EDIT PROFILE PAGE
+// ============================================================
 document.getElementById("toggleSidebar")
     ?.addEventListener("click", () => {
         document.querySelector(".dashboard")

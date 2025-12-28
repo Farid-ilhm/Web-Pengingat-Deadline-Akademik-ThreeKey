@@ -1,8 +1,11 @@
-// Admin Dashboard Charts
-// Note: adminChartLabels, adminChartTotalUsers, adminChartNewUsers must be defined in the PHP view
+// ============================================================
+// ADMIN DASHBOARD CHARTS
+// ============================================================
 
 if (typeof Chart !== 'undefined') {
-    /* ===== TOTAL USER ===== */
+    // ============================================================
+    // TOTAL USER
+    // ============================================================
     if (document.getElementById('chartTotalUser') && typeof adminChartTotalUsers !== 'undefined') {
         new Chart(document.getElementById('chartTotalUser'), {
             type: 'line',
@@ -28,7 +31,9 @@ if (typeof Chart !== 'undefined') {
         });
     }
 
-    /* ===== USER BARU ===== */
+    // ============================================================
+    // USER BARU
+    // ============================================================
     if (document.getElementById('chartNewUser') && typeof adminChartNewUsers !== 'undefined') {
         new Chart(document.getElementById('chartNewUser'), {
             type: 'bar',

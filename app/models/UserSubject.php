@@ -14,6 +14,9 @@ class UserSubject
         $this->db = Database::getConnection();
     }
 
+    // ============================================================
+    // CREATE
+    // ============================================================
     public function create($user_id, $subject_id, $name, $note = null)
     {
         $stmt = $this->db->prepare("
@@ -30,7 +33,9 @@ class UserSubject
         return $this->db->lastInsertId();
     }
 
-    /** ✅ CEGah DUPLIKAT GLOBAL SUBJECT */
+    // ============================================================
+    // FIND BY USER & SUBJECT (CEGAH DUPLIKAT)
+    // ============================================================
     public function findByUserAndSubject($userId, $subjectId)
     {
         $stmt = $this->db->prepare("
@@ -45,6 +50,9 @@ class UserSubject
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    // ============================================================
+    // FIND BY USER & NAME
+    // ============================================================
     public function findByUserAndName($userId, $name)
     {
         $stmt = $this->db->prepare("
@@ -59,6 +67,9 @@ class UserSubject
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    // ============================================================
+    // READ / LIST
+    // ============================================================
     public function allByUser($user_id)
     {
         $stmt = $this->db->prepare("
@@ -72,6 +83,9 @@ class UserSubject
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // ============================================================
+    // FIND ONE
+    // ============================================================
     public function find($id)
     {
         $stmt = $this->db->prepare("
@@ -81,6 +95,9 @@ class UserSubject
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    // ============================================================
+    // UPDATE
+    // ============================================================
     public function update($id, $user_id, $name, $note)
     {
         $stmt = $this->db->prepare("
@@ -96,6 +113,9 @@ class UserSubject
         ]);
     }
 
+    // ============================================================
+    // DELETE
+    // ============================================================
     public function delete($id, $user_id)
     {
         $stmt = $this->db->prepare("

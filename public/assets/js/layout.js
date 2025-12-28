@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    // ===== NOTIFICATION DROPDOWN =====
+    // ============================================================
+    // NOTIFICATION DROPDOWN
+    // ============================================================
     const toggle = document.getElementById('notifToggle');
     const dropdown = document.getElementById('notifDropdown');
 
@@ -17,7 +19,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // ===== LOGOUT MODAL =====
+    // ============================================================
+    // LOGOUT MODAL
+    // ============================================================
     const logoutBtn = document.getElementById('logoutBtn');
     const modal = document.getElementById('logoutModal');
     const cancelBtn = document.getElementById('cancelLogout');

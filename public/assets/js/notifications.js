@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    /* ================= TANDAI DIBACA ================= */
+    // ============================================================
+    // TANDAI DIBACA
+    // ============================================================
     document.querySelectorAll('.btn-read').forEach(btn => {
         btn.addEventListener('click', function (e) {
             e.preventDefault();
@@ -27,7 +29,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    /* ================= HAPUS ================= */
+    // ============================================================
+    // HAPUS
+    // ============================================================
     document.querySelectorAll('.btn-delete').forEach(btn => {
         btn.addEventListener('click', function (e) {
             e.preventDefault();
@@ -47,7 +51,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    /* ================= UPDATE BADGE ================= */
+    // ============================================================
+    // UPDATE BADGE
+    // ============================================================
     function updateBadge(count) {
         const top = document.getElementById('notifBadgeTop');
         const side = document.getElementById('notifBadgeSide');

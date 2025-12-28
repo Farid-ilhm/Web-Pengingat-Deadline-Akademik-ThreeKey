@@ -1,4 +1,6 @@
-// Password Visibility Toggle
+// ============================================================
+// PASSWORD VISIBILITY TOGGLE
+// ============================================================
 document.querySelectorAll('.toggle-password').forEach(button => {
     button.addEventListener('click', () => {
         const input = document.getElementById(button.dataset.target);
@@ -14,13 +16,17 @@ document.querySelectorAll('.toggle-password').forEach(button => {
     });
 });
 
-// Sidebar Toggle
+// ============================================================
+// SIDEBAR TOGGLE
+// ============================================================
 document.getElementById("toggleSidebar")
     ?.addEventListener("click", () => {
         document.querySelector(".dashboard").classList.toggle("collapsed");
     });
 
-// Auto-hide alerts
+// ============================================================
+// AUTO HIDE ALERTS
+// ============================================================
 setTimeout(() => {
     document.querySelectorAll('.auto-hide').forEach(el => {
         el.style.transition = "opacity 0.5s ease";

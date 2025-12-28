@@ -4,15 +4,21 @@ namespace App\Models;
 use App\Config\Database;
 use PDO;
 
-class OTP {
+class OTP
+{
 
     private $db;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->db = Database::getConnection();
     }
 
-    public function create($email, $code, $exp) {
+    // ============================================================
+    // CREATE OTP
+    // ============================================================
+    public function create($email, $code, $exp)
+    {
         $stmt = $this->db->prepare("
             INSERT INTO otp (user_email, code, expires_at)
             VALUES (?, ?, ?)
@@ -20,7 +26,11 @@ class OTP {
         $stmt->execute([$email, $code, $exp]);
     }
 
-    public function latestActive($email) {
+    // ============================================================
+    // LATEST ACTIVE OTP
+    // ============================================================
+    public function latestActive($email)
+    {
         $stmt = $this->db->prepare("
             SELECT * FROM otp 
             WHERE user_email = ? AND used = 0
@@ -30,7 +40,11 @@ class OTP {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function markUsed($id) {
+    // ============================================================
+    // MARK USED
+    // ============================================================
+    public function markUsed($id)
+    {
         $stmt = $this->db->prepare("UPDATE otp SET used = 1 WHERE id = ?");
         $stmt->execute([$id]);
     }

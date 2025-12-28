@@ -1,4 +1,6 @@
-// Schedule Form Interactions
+// ============================================================
+// SCHEDULE FORM INTERACTIONS
+// ============================================================
 const userSubject = document.getElementById("userSubject");
 const globalSubject = document.getElementById("globalSubject");
 const customSubject = document.getElementById("customSubject");
@@ -27,7 +29,9 @@ if (customSubject) {
     });
 }
 
-// Character Counter
+// ============================================================
+// CHARACTER COUNTER
+// ============================================================
 const textarea = document.querySelector("textarea[name='description']");
 const counter = document.querySelector(".char-counter");
 
@@ -37,7 +41,9 @@ if (textarea && counter) {
     });
 }
 
-// Sidebar Toggle
+// ============================================================
+// SIDEBAR TOGGLE
+// ============================================================
 document.addEventListener('DOMContentLoaded', function () {
     const toggleBtn = document.querySelector('.toggle-btn');
     const dashboard = document.querySelector('.dashboard');

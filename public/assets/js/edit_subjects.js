@@ -1,4 +1,6 @@
-// Character Counter for Note
+// ============================================================
+// CHARACTER COUNTER FOR NOTE
+// ============================================================
 const textarea = document.querySelector("textarea[name='note']");
 const counter = document.querySelector(".char-counter");
 
@@ -8,7 +10,9 @@ if (textarea && counter) {
     });
 }
 
-// Sidebar Toggle Logic
+// ============================================================
+// SIDEBAR TOGGLE LOGIC
+// ============================================================
 document.addEventListener('DOMContentLoaded', function () {
     const toggleBtn = document.querySelector('.toggle-btn');
     const dashboard = document.querySelector('.dashboard');

@@ -1,4 +1,6 @@
-// Auto-hide alerts
+// ============================================================
+// AUTO HIDE ALERTS
+// ============================================================
 setTimeout(() => {
     document.querySelectorAll('.auto-hide').forEach(el => {
         el.style.transition = "opacity .5s";

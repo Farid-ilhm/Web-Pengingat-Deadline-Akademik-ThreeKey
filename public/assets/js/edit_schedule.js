@@ -1,4 +1,6 @@
-// Character Counter for Description
+// ============================================================
+// CHARACTER COUNTER FOR DESCRIPTION
+// ============================================================
 const textarea = document.querySelector("textarea[name='description']");
 const counter = document.querySelector(".char-counter");
 
@@ -8,7 +10,9 @@ if (textarea && counter) {
     });
 }
 
-// Sidebar Toggle Logic
+// ============================================================
+// SIDEBAR TOGGLE LOGIC
+// ============================================================
 document.addEventListener('DOMContentLoaded', function () {
     const toggleBtn = document.querySelector('.toggle-btn');
     const dashboard = document.querySelector('.dashboard');
