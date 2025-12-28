@@ -9,10 +9,11 @@ use App\Models\Subject;
 use App\Models\Template;
 use App\Models\User;
 use App\Helpers\GoogleCalendar;
+use DateTime;
+use DateTimeZone;
 
 class ScheduleController
 {
-
     private $scheduleModel;
     private $userSubjectModel;
     private $subjectModel;
@@ -21,11 +22,11 @@ class ScheduleController
 
     public function __construct()
     {
-        $this->scheduleModel = new Schedule();
+        $this->scheduleModel    = new Schedule();
         $this->userSubjectModel = new UserSubject();
-        $this->subjectModel = new Subject();
-        $this->templateModel = new Template();
-        $this->userModel = new User();
+        $this->subjectModel     = new Subject();
+        $this->templateModel    = new Template();
+        $this->userModel        = new User();
     }
 
     public function addSchedule(
@@ -39,18 +40,17 @@ class ScheduleController
     ) {
         $user_subject_id = null;
 
-        // ============================================================
-        // SUBJECT HANDLING
-        // ============================================================
+        /* ============================================================
+         * SUBJECT HANDLING
+         * ============================================================ */
 
-        // 1️⃣ Pakai user_subject yang sudah ada
+        // 1️⃣ User subject existing
         if (!empty($subjectChoice['existing_user_subject_id'])) {
             $user_subject_id = (int) $subjectChoice['existing_user_subject_id'];
 
-            // 2️⃣ Global subject
+        // 2️⃣ Global subject
         } elseif (!empty($subjectChoice['global_subject_id'])) {
 
-            // ✅ Cek dulu apakah user sudah punya
             $existing = $this->userSubjectModel
                 ->findByUserAndSubject($userId, $subjectChoice['global_subject_id']);
 
@@ -58,7 +58,7 @@ class ScheduleController
                 $user_subject_id = $existing['id'];
             } else {
                 $global = $this->subjectModel->find($subjectChoice['global_subject_id']);
-                $name = $global ? $global['name'] : 'Unnamed Subject';
+                $name   = $global ? $global['name'] : 'Unnamed Subject';
 
                 $user_subject_id = $this->userSubjectModel->create(
                     $userId,
@@ -67,7 +67,7 @@ class ScheduleController
                 );
             }
 
-            // 3️⃣ Custom subject
+        // 3️⃣ Custom subject
         } else {
             $name = trim($subjectChoice['custom_name'] ?? 'Unnamed Subject');
             $user_subject_id = $this->userSubjectModel->create(
@@ -77,17 +77,25 @@ class ScheduleController
             );
         }
 
-        // ============================================================
-        // GOOGLE CALENDAR
-        // ============================================================
+        /* ============================================================
+         * GOOGLE CALENDAR (FIX TIMEZONE & RFC3339)
+         * ============================================================ */
 
         $user = $this->userModel->findById($userId);
         $google_event_id = null;
 
         if (!empty($user['provider_refresh_token'])) {
-            $start_google = date('c', strtotime($start_dt));
-            $end_google = date('c', strtotime($end_dt));
+
+            // 🔥 FIX UTAMA: pakai DateTime + DateTimeZone
             $tz = $_ENV['TIMEZONE'] ?? 'Asia/Jakarta';
+
+            $start_google = (new DateTime($start_dt, new DateTimeZone($tz)))
+                ->format(DateTime::RFC3339);
+
+            $end_google = $end_dt
+                ? (new DateTime($end_dt, new DateTimeZone($tz)))
+                    ->format(DateTime::RFC3339)
+                : null;
 
             $res = GoogleCalendar::createEventFromRefreshToken(
                 $user['provider_refresh_token'],
@@ -103,9 +111,9 @@ class ScheduleController
             }
         }
 
-        // ============================================================
-        // SAVE SCHEDULE
-        // ============================================================
+        /* ============================================================
+         * SAVE SCHEDULE
+         * ============================================================ */
 
         $scheduleId = $this->scheduleModel->create(
             $userId,
@@ -119,9 +127,9 @@ class ScheduleController
         );
 
         return [
-            'success' => true,
-            'schedule_id' => $scheduleId,
-            'google_event_id' => $google_event_id
+            'success'          => true,
+            'schedule_id'      => $scheduleId,
+            'google_event_id'  => $google_event_id
         ];
     }
 }
