@@ -3,6 +3,13 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 
 use App\Models\Notification;
 use App\Helpers\Email;
+use App\Config\Env;
+
+// LOAD .env (WAJIB UNTUK CRON)
+Env::load();
+
+// SET TIMEZONE
+date_default_timezone_set($_ENV['TIMEZONE'] ?? 'Asia/Jakarta');
 
 /*
 |--------------------------------------------------------------------------
@@ -32,22 +39,18 @@ foreach ($reminderDays as $day) {
         $body = "
             <h3>Halo, {$item['name']} 👋</h3>
             <p>Ini adalah pengingat untuk deadline berikut:</p>
-
             <ul>
                 <li><b>Judul:</b> {$item['title']}</li>
                 <li><b>Batas Akhir:</b> {$item['end_datetime']}</li>
                 <li><b>Sisa Waktu:</b> H-{$day}</li>
             </ul>
-
             <p>Jangan lupa menyelesaikan sebelum batas waktu.</p>
-            <br>
             <small>Email ini dikirim otomatis oleh sistem ThreeKey.</small>
         ";
 
-        /* ================= KIRIM EMAIL ================= */
         Email::send($item['email'], $subject, $body);
 
-        /* ================= SIMPAN NOTIFIKASI ================= */
+        // Simpan notifikasi (pastikan tidak dobel)
         $notification->create(
             (int)$item['user_id'],
             (int)$item['schedule_id'],
@@ -57,12 +60,3 @@ foreach ($reminderDays as $day) {
         );
     }
 }
-
-echo "✅ Reminder deadline & notifikasi berhasil dijalankan\n";
-
-/*
-|--------------------------------------------------------------------------
-| Untuk testing manual (belum hosting):
-| http://localhost/threekey/public/cron/send_deadline_reminder.php
-|--------------------------------------------------------------------------
-*/

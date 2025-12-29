@@ -6,7 +6,6 @@ use PDO;
 
 class Notification
 {
-
     private $db;
 
     public function __construct()
@@ -14,82 +13,104 @@ class Notification
         $this->db = Database::getConnection();
     }
 
-    // ============================================================
-    // DEADLINE REMINDER
-    // ============================================================
-
+    /* ============================================================
+     * DEADLINE REMINDER (H-7, H-3, H-1, H-0)
+     * ============================================================ */
     public function getSchedulesByDayOffset(int $days): array
     {
-        $stmt = $this->db->prepare("
-            SELECT 
-                sch.id AS schedule_id,
-                sch.title,
-                sch.end_datetime,
-                u.id AS user_id,
-                u.email,
-                u.name
-            FROM schedules sch
-            JOIN users u ON sch.user_id = u.id
-            WHERE DATE(sch.end_datetime) = DATE(DATE_ADD(CURDATE(), INTERVAL :days DAY))
-        ");
-        $stmt->bindValue(':days', $days, PDO::PARAM_INT);
-        $stmt->execute();
+        /**
+         * CATATAN PENTING:
+         * - H-0 TIDAK BOLEH pakai CURDATE()
+         * - Harus pakai NOW() supaya jam ikut dihitung
+         */
 
+        if ($days === 0) {
+            // ================= H-0 (hari ini, jam real) =================
+            $sql = "
+                SELECT 
+                    sch.id AS schedule_id,
+                    sch.title,
+                    sch.end_datetime,
+                    u.id AS user_id,
+                    u.email,
+                    u.name
+                FROM schedules sch
+                JOIN users u ON sch.user_id = u.id
+                WHERE sch.end_datetime BETWEEN NOW() AND DATE_ADD(NOW(), INTERVAL 1 DAY)
+            ";
+            $stmt = $this->db->prepare($sql);
+        } else {
+            // ================= H-7, H-3, H-1 =================
+            $sql = "
+                SELECT 
+                    sch.id AS schedule_id,
+                    sch.title,
+                    sch.end_datetime,
+                    u.id AS user_id,
+                    u.email,
+                    u.name
+                FROM schedules sch
+                JOIN users u ON sch.user_id = u.id
+                WHERE DATE(sch.end_datetime) = DATE(DATE_ADD(CURDATE(), INTERVAL :days DAY))
+            ";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(':days', $days, PDO::PARAM_INT);
+        }
+
+        $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // ============================================================
-    // INSERT NOTIFICATION
-    // ============================================================
-
+    /* ============================================================
+     * INSERT NOTIFICATION (ANTI DUPLIKASI)
+     * ============================================================ */
     public function create(
         int $userId,
         int $scheduleId,
         int $reminderDay,
         string $title,
         string $message
-    ) {
-        // CEGAH DUPLIKASI
+    ): void {
+        // Cek duplikasi
         $check = $this->db->prepare("
             SELECT id FROM notifications
             WHERE user_id = ?
-            AND schedule_id = ?
-            AND reminder_day = ?
+              AND schedule_id = ?
+              AND reminder_day = ?
             LIMIT 1
         ");
         $check->execute([$userId, $scheduleId, $reminderDay]);
 
         if ($check->fetch()) {
-            return; // ❌ sudah pernah dibuat
+            // Sudah ada → jangan insert ulang
+            return;
         }
 
         $stmt = $this->db->prepare("
-            INSERT INTO notifications 
-            (user_id, schedule_id, reminder_day, title, message)
-            VALUES (?, ?, ?, ?, ?)
+            INSERT INTO notifications
+            (user_id, schedule_id, reminder_day, title, message, is_read, created_at)
+            VALUES (?, ?, ?, ?, ?, 0, NOW())
         ");
-        $stmt->execute([$userId, $scheduleId, $reminderDay, $title, $message]);
+        $stmt->execute([
+            $userId,
+            $scheduleId,
+            $reminderDay,
+            $title,
+            $message
+        ]);
     }
 
-    public function delete(int $id, int $userId): bool
-    {
-        $stmt = $this->db->prepare("
-            DELETE FROM notifications
-            WHERE id = ? AND user_id = ?
-        ");
-        return $stmt->execute([$id, $userId]);
-    }
-
-
-    // ============================================================
-    // USER NOTIFICATION
-    // ============================================================
+    /* ============================================================
+     * USER NOTIFICATION
+     * ============================================================ */
 
     public function unreadByUser(int $userId): array
     {
         $stmt = $this->db->prepare("
-            SELECT * FROM notifications
-            WHERE user_id = ? AND is_read = 0
+            SELECT *
+            FROM notifications
+            WHERE user_id = ?
+              AND is_read = 0
             ORDER BY created_at DESC
             LIMIT 10
         ");
@@ -100,7 +121,8 @@ class Notification
     public function allByUser(int $userId): array
     {
         $stmt = $this->db->prepare("
-            SELECT * FROM notifications
+            SELECT *
+            FROM notifications
             WHERE user_id = ?
             ORDER BY created_at DESC
         ");
@@ -108,10 +130,11 @@ class Notification
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function markAsRead(int $id, int $userId)
+    public function markAsRead(int $id, int $userId): void
     {
         $stmt = $this->db->prepare("
-            UPDATE notifications SET is_read = 1
+            UPDATE notifications
+            SET is_read = 1
             WHERE id = ? AND user_id = ?
         ");
         $stmt->execute([$id, $userId]);
@@ -120,8 +143,10 @@ class Notification
     public function countUnread(int $userId): int
     {
         $stmt = $this->db->prepare("
-            SELECT COUNT(*) FROM notifications
-            WHERE user_id = ? AND is_read = 0
+            SELECT COUNT(*) 
+            FROM notifications
+            WHERE user_id = ?
+              AND is_read = 0
         ");
         $stmt->execute([$userId]);
         return (int) $stmt->fetchColumn();
