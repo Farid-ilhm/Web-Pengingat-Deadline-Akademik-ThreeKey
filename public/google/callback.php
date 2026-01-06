@@ -15,6 +15,11 @@ if (!isset($_GET['code'])) {
     exit("Google OAuth tidak mengembalikan kode.");
 }
 
+// Debugging: Pastikan ENV terisi
+if (empty($_ENV['GOOGLE_CLIENT_ID']) || empty($_ENV['GOOGLE_CLIENT_SECRET'])) {
+    exit("Error: Environment variables (Client ID/Secret) kosong di server hosting. Periksa file .env.");
+}
+
 /* ================= GOOGLE CLIENT ================= */
 $client = new Client();
 $client->setClientId($_ENV['GOOGLE_CLIENT_ID']);
@@ -24,23 +29,47 @@ $client->setAccessType('offline');
 $client->setPrompt('consent');
 
 $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+
 if (isset($token['error'])) {
-    exit("Error OAuth Google: " . $token['error']);
+    exit("Error OAuth Google (Exchange Token): " . $token['error'] . " - " . ($token['error_description'] ?? ''));
+}
+
+if (!isset($token['access_token'])) {
+    echo "<h1>Debug Info</h1>";
+    echo "<pre>";
+    print_r($token);
+    echo "</pre>";
+    exit("Error: Access Token tidak ditemukan dalam respon Google.");
+}
+
+// Cek kadaluarsa (Kemungkinan masalah waktu server)
+if ($client->isAccessTokenExpired()) {
+    exit("Error: Token yang baru saja diambil sudah kadaluarsa. Ini biasanya karena jam di server hosting anda meleset/tidak akurat.");
 }
 
 $client->setAccessToken($token['access_token']);
 
 /* ================= GET GOOGLE USER ================= */
-$service    = new Oauth2($client);
-$googleUser = $service->userinfo->get();
+try {
+    $service = new Oauth2($client);
+    $googleUser = $service->userinfo->get();
+} catch (\Exception $e) {
+    echo "<h1>Fatal Error pada Userinfo Request</h1>";
+    echo "Pesan Error: " . $e->getMessage() . "<br>";
+    echo "HTTP Code: " . $e->getCode() . "<br>";
+    echo "<hr><h3>Detail Client State:</h3>";
+    echo "Redirect URI: " . $client->getRedirectUri() . "<br>";
+    echo "Scopes yang Aktif: <pre>" . print_r($client->getScopes(), true) . "</pre>";
+    exit();
+}
 
-$email   = $googleUser->email;
-$name    = $googleUser->name;
-$gid     = $googleUser->id;
+$email = $googleUser->email;
+$name = $googleUser->name;
+$gid = $googleUser->id;
 $picture = $googleUser->picture ?? null;
 
 $userModel = new User();
-$user      = $userModel->findByEmail($email);
+$user = $userModel->findByEmail($email);
 
 /* ================= DOWNLOAD FOTO GOOGLE ================= */
 $photoName = null;
@@ -85,7 +114,7 @@ if ($user) {
 
     $user = $userModel->findByEmail($email);
 
-/* ================= USER BARU ================= */
+    /* ================= USER BARU ================= */
 } else {
 
     $stmt = $pdo->prepare("
@@ -105,11 +134,11 @@ if (!empty($token['refresh_token'])) {
 
 /* ================= SET SESSION (PENTING) ================= */
 Session::set('user', [
-    'id'          => $user['id'],
-    'name'        => $user['name'],
-    'email'       => $user['email'],
-    'role'        => $user['role'],
-    'provider'    => $user['provider'],
+    'id' => $user['id'],
+    'name' => $user['name'],
+    'email' => $user['email'],
+    'role' => $user['role'],
+    'provider' => $user['provider'],
     'profile_pic' => $user['profile_pic'] ?? null
 ]);
 

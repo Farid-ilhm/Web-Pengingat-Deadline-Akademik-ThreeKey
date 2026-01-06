@@ -24,7 +24,11 @@ $client->setClientSecret($_ENV['GOOGLE_CLIENT_SECRET']);
 $client->setRedirectUri($_ENV['GOOGLE_REDIRECT_URI']);
 
 /* ================= SCOPE KHUSUS CALENDAR ================= */
-$client->addScope(\Google\Service\Calendar::CALENDAR);
+$client->addScope([
+    'https://www.googleapis.com/auth/userinfo.email',
+    'https://www.googleapis.com/auth/userinfo.profile',
+    'https://www.googleapis.com/auth/calendar'
+]);
 
 /* WAJIB agar dapat refresh_token */
 $client->setAccessType('offline');

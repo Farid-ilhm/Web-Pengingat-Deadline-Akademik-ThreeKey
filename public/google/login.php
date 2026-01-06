@@ -13,11 +13,12 @@ $client->setClientSecret($_ENV['GOOGLE_CLIENT_SECRET']);
 $client->setRedirectUri($_ENV['GOOGLE_REDIRECT_URI']);
 
 
- 
+
 /*WAJIB: tambah scope Google Calendar*/
 $client->addScope([
-    'email',
-    'profile',
+    'https://www.googleapis.com/auth/userinfo.email',
+    'https://www.googleapis.com/auth/userinfo.profile',
+    'https://www.googleapis.com/auth/calendar'
 ]);
 
 /*WAJIB: Minta refresh token, supaya event bisa disimpan dari server*/
